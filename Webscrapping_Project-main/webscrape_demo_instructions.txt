@@ -1,0 +1,30 @@
+DEMO STEPS — Webscraping → Spark → Postgres
+(Use PowerShell. When psql asks for a password, type: admin)
+
+1) Open project & activate venv
+
+2) This runs scraper → processor → PostgreSQL loader. Run "main.py"
+python main.py
+
+3) Connect to Postgres (psql)
+psql -h localhost -p 5433 -U postgres -d quotes_db
+
+4) Verify data in PostgreSQL (pgAdmin)
+
+Open pgAdmin → your quotes_db → Schemas → public → Tables
+
+Run this in Query Tool:
+
+SELECT COUNT(*) FROM authors;
+SELECT COUNT(*) FROM tags;
+SELECT COUNT(*) FROM quotes_stage;
+
+
+You should see non-zero counts (e.g., 10–100 rows).
+
+5)Show results
+
+Check that final table has data:
+
+SELECT * FROM quotes LIMIT 5;
+
